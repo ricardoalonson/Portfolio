@@ -11,51 +11,140 @@
 -->
 <!DOCTYPE html>
 <html lang="en" class="sr">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/png" href="assets/favicon.png" />
-
     <!-- Todo: put here your site title -->
     <title>Ricardo Alonso | QA Engineer</title>
     <!-- Todo: add some coding keywords below - e.g: (javascript, yourusername, etc) -->
     <meta name="keywords" content="ricardoalonson, Ricardo Alonso, QA Engineer, testing, QA, Quality Assurance" />
     <!-- Todo: improve your SEO by adding a small description of you -->
     <meta name="description" content="Ricardo Alonso | QA Engineer" />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="styles.scss" />
-    <script
-      defer
-      src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"
-    ></script>
+    <script defer src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    
+    <!-- Style for the language toggle switch -->
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            margin: 0 5px;
+        }
 
-    <!-- Todo: remove the below script once you finish your portfolio -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-  </head>
+        .language-switch {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 120px; /* Add this line to adjust the position */
+        }
 
-  <!-- Todo: read the following HTML Todos to create your stunning portfolio website -->
-  <body>
+        .switch > span {
+            position: absolute;
+            top: 14px;
+            pointer-events: none;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .06);
+            width: 50%;
+            text-align: center;
+            color: white;
+        }
+        input.check-toggle-round-flat:checked ~ .off {
+            color: #3B5581;
+        }
+        input.check-toggle-round-flat:checked ~ .on {
+            color: #fff;
+        }
+        .switch > span.on {
+            left: 0;
+            padding-left: 2px;
+            color: #3B5581;
+        }
+        .switch > span.off {
+            right: 0;
+            padding-right: 4px;
+            color: #fff;
+        }
+        .check-toggle {
+            position: absolute;
+            margin-left: -9999px;
+            visibility: hidden;
+        }
+        .check-toggle + label {
+            display: block;
+            position: relative;
+            cursor: pointer;
+            outline: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        input.check-toggle-round-flat + label {
+            padding: 2px;
+            width: 97px;
+            height: 35px;
+            background-color: #3B5581;
+            border-radius: 60px;
+        }
+        input.check-toggle-round-flat + label:before, input.check-toggle-round-flat + label:after {
+            display: block;
+            position: absolute;
+            content: "";
+        }
+        input.check-toggle-round-flat + label:before {
+            top: 2px;
+            left: 2px;
+            bottom: 2px;
+            right: 2px;
+            background-color: #3B5581;
+            border-radius: 60px;
+        }
+        input.check-toggle-round-flat + label:after {
+            top: 4px;
+            left: 4px;
+            bottom: 4px;
+            width: 48px;
+            background-color: #fff;
+            border-radius: 52px;
+            transition: margin 0.2s;
+        }
+        input.check-toggle-round-flat:checked + label:after {
+            margin-left: 44px;
+        }
+    </style>
+</head>
+
+<body>
     <div id="top"></div>
 
     <!-- **** Hero Section **** -->
     <section id="hero" class="jumbotron">
-      <div class="container">
-        <h1 id="hero-title" class="hero-title load-hidden">
-          Hi, my name is <span class="text-color-main">Ricardo Alonso</span>
-          <br />
-          I'm <span id="role">QA Engineer.</span>
-        </h1>
-        <p class="hero-cta load-hidden">
-          <a rel="noreferrer" class="cta-btn cta-btn--hero" href="#about"
-            >Know more</a
-          >
-        </p>
-      </div>
+        <div class="container">
+            <h1 id="hero-title" class="hero-title load-hidden">
+                Hi, my name is <span class="text-color-main">Ricardo Alonso</span>
+                <br />
+                I'm <span id="role">QA Engineer.</span>
+            </h1>
+            <p class="hero-cta load-hidden">
+                <a rel="noreferrer" class="cta-btn cta-btn--hero" href="#about">Know more</a>
+            </p>
+            <!-- Language Toggle Switch -->
+            <div class="language-switch">
+                <div class="switch">
+                    <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
+                    <label for="language-toggle"></label>
+                    <span class="on">EN</span>
+                    <span class="off">ES</span>
+                </div>
+            </div>
+            <!-- /END Language Toggle Switch -->
+        </div>
     </section>
     <!-- /END Hero Section -->
 
@@ -103,10 +192,19 @@
         startTextAnimation();
       });
 
+      // Language Toggle Functionality
+      function toggleLanguage() {
+        const isChecked = document.getElementById('language-toggle').checked;
+        if (isChecked) {
+          document.documentElement.lang = 'en';
+          // Additional functionality to switch content to English can be added here
+        } else {
+          document.documentElement.lang = 'es';
+          // Additional functionality to switch content to Spanish can be added here
+        }
+      }
     </script>
     <!--END Dynamic Roles-->
-
-
 
     <!-- **** About Section **** -->
     <section id="about">
@@ -155,6 +253,9 @@
       </div>
     </section>
     <!-- /END About Section -->
+  </body>
+</html>
+
 
     <!-- **** Projects Section **** -->
     <section id="projects">
