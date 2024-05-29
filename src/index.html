@@ -217,6 +217,13 @@
     const staticTextEs = "Hola, mi nombre es <span class='text-color-main'>Ricardo Alonso</span><br />Soy ";
 
     // Texto en las secciones de About me y Proyectos
+    // Para añadir más proyectos con sus traducciones seguir los siguientes pasos:
+    // Paso 1: Añadir el proyecto con copy paste en la Projects section, copiando desde Notice each row.. hasta END Project.
+    // Paso 2: Cambiar el nombre del ID del proyecto, tanto para el título como para descripción (ahí mismo en el proyecto que acabas de añadir, viene como (id= project-1-title) y así con la descripción también, poner el número correspondiente.
+    // Paso 3: Aquí abajo en la parte de const content añadir el project#title y description en inglés y español. Verificar que no se lviden las comas (,) al final.
+    // Paso 4: En la function updateContent() añadir el proyecto, igual puede hacer un copy-paste de algúno otro proyecto (son 2 líneas).
+    // Paso 5: En el if y en el else añadir también el proyecto, title y description.
+  
     const content = {
         en: {
             aboutMe1: "👋 QA Engineer with an Aeronautical Engineering background. <br> While aeronautics holds a special place in my heart ✈️, I'm excited to take flight in the IT industry. 🚀",
@@ -226,8 +233,15 @@
             projectsTitle: "Projects",
             project1Title: "Web App Automation - Urban Routes (POM)",
             project1Description: "This project automates the reservation process of UrbanRoutes using Selenium WebDriver and Python. It covers various functionalities such as setting routes, selecting taxi fares, providing phone numbers and credit card details, sending messages to drivers, and requesting additional services such as blankets and ice creams.",
+            project2Title: "API Automation Urban Grocers",
+            project2Description: "This project consists of a suite of automated tests developed with Pytest for the Urban Grocers program. All tests focus on verifying the functionality of creating a new kit, with emphasis on handling the 'name' parameter. The test suite includes 9 tests that address various scenarios of the 'name' parameter.",
+            project3Title: "Student Grades Management",
+            project3Description: "This repository contains a C++ program designed to manage and analyze the grades of a class of students. The program is built as part of a project to practice array manipulation, input validation, and basic statistical operations. The main features of the program include input validation, grade calculations, and conditional updates to student grades.",
             seeLive: "See Live",
-            sourceCode: "Source Code"
+            sourceCode: "Source Code",
+            contactTitle: "Contact",
+            contactText: "Don't hesitate to reach out to me!",
+            contactBtn: "Get in Touch"
         },
         es: {
             aboutMe1: "👋 Ingeniero de QA con formación en Ingeniería Aeronáutica. <br> Aunque la aeronáutica tiene un lugar especial en mi corazón ✈️, estoy emocionado de despegar en la industria de TI. 🚀",
@@ -235,11 +249,18 @@
             aboutTitle: "Acerca de mí",
             resumeBtn: "Ver Currículum",
             projectsTitle: "Proyectos",
-            project1Title: "Automatización de Aplicación Web - Rutas Urbanas (POM)",
+            project1Title: "Automatización de Aplicación Web - Urban Routes (POM)",
             project1Description: "Este proyecto automatiza el proceso de reserva de UrbanRoutes utilizando Selenium WebDriver y Python. Cubre varias funcionalidades como establecer rutas, seleccionar tarifas de taxi, proporcionar números de teléfono y detalles de tarjetas de crédito, enviar mensajes a los conductores y solicitar servicios adicionales como mantas y helados.",
+            project2Title: "Automatización de API de Urban Grocers",
+            project2Description: "Este proyecto consiste en una suite de pruebas automatizadas desarrolladas con Pytest para el programa Urban Grocers. Todas las pruebas se centran en verificar la funcionalidad de crear un nuevo kit, con énfasis en el manejo del parámetro 'name'. La suite de pruebas incluye 9 pruebas que abordan varios escenarios del parámetro 'name'.",
+            project3Title: "Gestión de calificaciones de estudiantes",
+            project3Description: "Este repositorio contiene un programa C++ diseñado para gestionar y analizar las calificaciones de una clase de estudiantes. El programa está construido como parte de un proyecto para practicar la manipulación de matrices, la validación de entradas y operaciones estadísticas básicas. Las características principales del programa incluyen validación de entradas, cálculos de calificaciones y actualizaciones condicionales de las calificaciones de los estudiantes.",
             seeLive: "Ver en Vivo",
-            sourceCode: "Código Fuente"
-        }
+            sourceCode: "Código Fuente",
+            contactTitle: "Contacto"   ,
+            contactText:"¡No dudes en ponerte en contacto conmigo!",
+            contactBtn: "Contactar"
+          }
     };
 
     function updateContent() {
@@ -250,10 +271,19 @@
       const projectsTitle = document.getElementById('projects-title');
       const project1Title = document.getElementById('project-1-title');
       const project1Description = document.getElementById('project-1-description');
+      const project2Title = document.getElementById('project-2-title');
+      const project2Description = document.getElementById('project-2-description');
+      const project3Title = document.getElementById('project-3-title');
+      const project3Description = document.getElementById('project-3-description');
 
       // Selecciona todos los botones "See Live" y "Source Code" de los proyectos
       const projectLiveBtns = document.querySelectorAll('.project-live-btn');
       const projectCodeBtns = document.querySelectorAll('.project-code-btn');
+
+      // Sección de Contacto
+      const contactTitle = document.querySelector('#contact .section-title');
+      const contactText = document.querySelector('.contact-wrapper__text');
+      const contactBtn = document.querySelector('.cta-btn--contact');
 
       if (currentLang === 'en') {
           aboutMeText1.innerHTML = content.en.aboutMe1;
@@ -263,8 +293,17 @@
           projectsTitle.textContent = content.en.projectsTitle;
           project1Title.textContent = content.en.project1Title;
           project1Description.textContent = content.en.project1Description;
+          project2Title.textContent = content.en.project2Title;
+          project2Description.textContent = content.en.project2Description;
+          project3Title.textContent = content.en.project3Title;
+          project3Description.textContent = content.en.project3Description;
+
           projectLiveBtns.forEach(btn => btn.textContent = content.en.seeLive);
           projectCodeBtns.forEach(btn => btn.textContent = content.en.sourceCode);
+
+          contactTitle.textContent = content.en.contactTitle;
+          contactText.textContent = content.en.contactText;
+          contactBtn.textContent = content.en.contactBtn;
       } else {
           aboutMeText1.innerHTML = content.es.aboutMe1;
           aboutMeText2.innerHTML = content.es.aboutMe2;
@@ -273,8 +312,17 @@
           projectsTitle.textContent = content.es.projectsTitle;
           project1Title.textContent = content.es.project1Title;
           project1Description.textContent = content.es.project1Description;
+          project2Title.textContent = content.es.project2Title;
+          project2Description.textContent = content.es.project2Description;
+          project3Title.textContent = content.es.project3Title;
+          project3Description.textContent = content.es.project3Description;
+
           projectLiveBtns.forEach(btn => btn.textContent = content.es.seeLive);
           projectCodeBtns.forEach(btn => btn.textContent = content.es.sourceCode);
+
+          contactTitle.textContent = content.es.contactTitle;
+          contactText.textContent = content.es.contactText;
+          contactBtn.textContent = content.es.contactBtn;
       }
   }
 
@@ -389,9 +437,9 @@
           <div class="row">
             <div class="col-lg-4 col-sm-12">
               <div class="project-wrapper__text load-hidden">
-                <h3 class="project-wrapper__text-title">API Automation Urban Grocers</h3>
+                <h3 id="project-2-title" class="project-wrapper__text-title">API Automation Urban Grocers</h3>
                 <div>
-                  <p class="mb-4">
+                  <p id="project-2-description"class="mb-4">
                     This project consists of a suite of automated tests developed with Pytest for the Urban Grocers program. 
                     All tests focus on verifying the functionality of creating a new kit, with emphasis on handling the "name" parameter. 
                     The test suite includes 9 tests that address various scenarios of the "name" parameter.
@@ -450,9 +498,9 @@
           <div class="row">
             <div class="col-lg-4 col-sm-12">
               <div class="project-wrapper__text load-hidden">
-                <h3 class="project-wrapper__text-title">Student Grades Management</h3>
+                <h3 id="project-3-title" class="project-wrapper__text-title">Student Grades Management</h3>
                 <div>
-                  <p class="mb-4">
+                  <p id="project-3-description" class="mb-4">
                     This repository contains a C++ program designed to manage and analyze the grades of a class of students. 
                     The program is built as part of a project to practice array manipulation, input validation, and basic statistical operations. 
                     The main features of the program include input validation, grade calculations, and conditional updates to student grades.
@@ -543,7 +591,7 @@
           <a
             rel="noreferrer"
             target="_blank"
-            class="cta-btn cta-btn--resume"
+            class="cta-btn cta-btn--contact cta-btn--resume"
             href="mailto:ralonson1098@gmail.com"
             >Get in Touch</a
           >
