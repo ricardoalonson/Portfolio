@@ -108,175 +108,221 @@
 <body>
     <div id="top"></div>
 
-    <!-- **** Hero Section **** -->
-    <section id="hero" class="jumbotron">
-        <div class="container">
-            <h1 id="hero-title" class="hero-title load-hidden">
-                Hi, my name is <span class="text-color-main">Ricardo Alonso</span>
-                <br />
-                I'm <span id="role">QA Engineer.</span>
-            </h1>
-            <p class="hero-cta load-hidden">
-                <a id="know-more-btn" rel="noreferrer" class="cta-btn cta-btn--hero" href="#about">Know more</a>
-            </p>
-            <!-- Language Toggle Switch -->
-            <div class="language-switch">
-                <div class="switch">
-                    <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
-                    <label for="language-toggle"></label>
-                    <span class="on">EN</span>
-                    <span class="off">ES</span>
-                </div>
+  <!-- HTML code for Hero and About sections -->
+  <!-- **** Hero Section **** -->
+  <section id="hero" class="jumbotron">
+    <div class="container">
+        <h1 id="hero-title" class="hero-title load-hidden">
+            Hi, my name is <span class="text-color-main">Ricardo Alonso</span>
+            <br />
+            I'm <span id="role">QA Engineer.</span>
+        </h1>
+        <p class="hero-cta load-hidden">
+            <a id="know-more-btn" rel="noreferrer" class="cta-btn cta-btn--hero" href="#about">Know more</a>
+        </p>
+        <!-- Language Toggle Switch -->
+        <div class="language-switch">
+            <div class="switch">
+                <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
+                <label for="language-toggle"></label>
+                <span class="on">EN</span>
+                <span class="off">ES</span>
             </div>
-            <!-- /END Language Toggle Switch -->
         </div>
-    </section>
-    <!-- /END Hero Section -->
+        <!-- /END Language Toggle Switch -->
+    </div>
+  </section>
+  <!-- /END Hero Section -->
 
-    <script>
-        // Define a flag to prevent multiple animations
-        let isAnimating = false;
-
-        // Language Toggle Functionality
-        const roles = {
-            en: ["QA Engineer", "Aeronautical Engineer"],
-            es: ["Ingeniero de QA", "Ingeniero Aeronáutico"]
-        };
-
-        let currentIndex = 0;
-        let currentLang = 'en';
-        let roleElement = document.getElementById("role");
-
-        function typeWriter(text, i, callback) {
-            if (i < text.length) {
-                roleElement.innerHTML = text.substring(0, i + 1);
-                setTimeout(() => typeWriter(text, i + 1, callback), 100);
-            } else if (typeof callback === 'function') {
-                setTimeout(callback, 700); // Pause before starting to delete
-            }
-        }
-
-        function deleteWriter(text, i, callback) {
-            if (i >= 0) {
-                roleElement.innerHTML = text.substring(0, i);
-                setTimeout(() => deleteWriter(text, i - 1, callback), 50);
-            } else if (typeof callback === 'function') {
-                callback();
-            }
-        }
-
-        function startTextAnimation() {
-            if (isAnimating) return; // Prevent multiple animations
-            isAnimating = true;
-
-            const currentRole = roles[currentLang][currentIndex];
-            typeWriter(currentRole, 0, () => {
-                deleteWriter(currentRole, currentRole.length, () => {
-                    currentIndex = (currentIndex + 1) % roles[currentLang].length;
-                    isAnimating = false; // Allow new animation to start
-                    startTextAnimation();
-                });
-            });
-        }
-
-        // Define the static text strings for both languages
-        const staticTextEn = "Hi, my name is <span class='text-color-main'>Ricardo Alonso</span><br />I'm ";
-        const staticTextEs = "Hola, mi nombre es <span class='text-color-main'>Ricardo Alonso</span><br />Soy ";
-
-        function toggleLanguage() {
-            const isChecked = document.getElementById('language-toggle').checked;
-            currentLang = isChecked ? 'es' : 'en'; // Update current language flag
-
-            const heroTitle = document.getElementById('hero-title');
-            const knowMoreBtn = document.getElementById('know-more-btn');
-
-            // Update the hero title and "Know more" button text based on the current language
-            if (currentLang === 'en') {
-                heroTitle.innerHTML = `${staticTextEn}<span id="role"></span>`;
-                knowMoreBtn.textContent = 'Know more';
-            } else {
-                heroTitle.innerHTML = `${staticTextEs}<span id="role"></span>`;
-                knowMoreBtn.textContent = 'Saber más';
-            }
-
-            // Re-select the role element after updating the innerHTML
-            roleElement = document.getElementById("role");
-
-            // Restart text animation with the new language
-            currentIndex = 0;
-            startTextAnimation();
-        }
-
-        document.getElementById('language-toggle').addEventListener('change', toggleLanguage);
-
-        // Start the initial text animation
-        document.addEventListener('DOMContentLoaded', () => {
-            startTextAnimation();
-        });
-    </script>
-
-    <!-- **** About Section **** -->
-    <section id="about">
-      <div class="container">
+  <!-- **** About Section **** -->
+  <section id="about">
+    <div class="container">
         <h2 class="section-title load-hidden">About me</h2>
         <div class="row about-wrapper">
-          <div class="col-md-6 col-sm-12">
-            <div class="about-wrapper__image load-hidden">
-              <img
-                alt="Profile Image"
-                class="img-fluid rounded shadow-lg"
-                height="auto"
-                width="300px"
-                src="assets/profile.jpg"
-                alt="Profile Image"
-              />
+            <div class="col-md-6 col-sm-12">
+                <div class="about-wrapper__image load-hidden">
+                    <img alt="Profile Image" class="img-fluid rounded shadow-lg" height="auto" width="300px" src="assets/profile.jpg" alt="Profile Image" />
+                </div>
             </div>
-          </div>
-          <div class="col-md-6 col-sm-12">
-            <div class="about-wrapper__info load-hidden">
-              <p class="about-wrapper__info-text">
-                👋 QA Engineer with an Aeronautical Engineering background. <br> While aeronautics holds a special place in my heart ✈️, I'm excited to take flight in the IT industry. 🚀 
-              </p>
-              <p class="about-wrapper__info-text">
-                My passion for Python fuels my exploration of web automation with Selenium and API automation with Pytest.
-                Outside of my professional endeavors, I'm dedicated to continuous learning and growth, 
-                constantly aiming to expand my skill set in the dynamic field of automation testing. 
-                <br><br>
-                In this space, you'll find a collection of projects I've tackled throughout my career, showcasing my abilities and experience 📚.
-                <br><br>
-                Let's connect! 🤝 I'm always interested in collaborating and learning from others.
-              </p>
-              <span class="d-flex mt-3">
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn cta-btn--resume"
-                  href="assets/resume.pdf"
-                >
-                  View Resume
-                </a>
-              </span>
+            <div class="col-md-6 col-sm-12">
+                <div class="about-wrapper__info load-hidden">
+                    <p id="about-me-text-1" class="about-wrapper__info-text"></p>
+                    <p id="about-me-text-2" class="about-wrapper__info-text"></p>
+                    <span class="d-flex mt-3">
+                        <a rel="noreferrer" target="_blank" class="cta-btn cta-btn--resume" href="assets/resume.pdf">View Resume</a>
+                    </span>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
-    <!-- /END About Section -->
+    </div>
+  </section>
+  <!-- /END About Section -->
+
+  <script>
+    // Define a flag to prevent multiple animations
+    let isAnimating = false;
+
+    // Language Toggle Functionality
+    const roles = {
+        en: ["QA Engineer", "Aeronautical Engineer"],
+        es: ["Ingeniero de QA", "Ingeniero Aeronáutico"]
+    };
+
+    let currentIndex = 0;
+    let currentLang = 'en';
+    let roleElement = document.getElementById("role");
+
+    function typeWriter(text, i, callback) {
+        if (i < text.length) {
+            roleElement.innerHTML = text.substring(0, i + 1);
+            setTimeout(() => typeWriter(text, i + 1, callback), 100);
+        } else if (typeof callback === 'function') {
+            setTimeout(callback, 700); // Pause before starting to delete
+        }
+    }
+
+    function deleteWriter(text, i, callback) {
+        if (i >= 0) {
+            roleElement.innerHTML = text.substring(0, i);
+            setTimeout(() => deleteWriter(text, i - 1, callback), 50);
+        } else if (typeof callback === 'function') {
+            callback();
+        }
+    }
+
+    function startTextAnimation() {
+        if (isAnimating) return; // Prevent multiple animations
+        isAnimating = true;
+
+        const currentRole = roles[currentLang][currentIndex];
+        typeWriter(currentRole, 0, () => {
+            deleteWriter(currentRole, currentRole.length, () => {
+                currentIndex = (currentIndex + 1) % roles[currentLang].length;
+                isAnimating = false; // Allow new animation to start
+                startTextAnimation();
+            });
+        });
+    }
+
+    // Define the static text strings for both languages
+    // Texto de la sección del Hero 
+    const staticTextEn = "Hi, my name is <span class='text-color-main'>Ricardo Alonso</span><br />I'm ";
+    const staticTextEs = "Hola, mi nombre es <span class='text-color-main'>Ricardo Alonso</span><br />Soy ";
+
+    // Texto en las secciones de About me y Proyectos
+    const content = {
+        en: {
+            aboutMe1: "👋 QA Engineer with an Aeronautical Engineering background. <br> While aeronautics holds a special place in my heart ✈️, I'm excited to take flight in the IT industry. 🚀",
+            aboutMe2: "My passion for Python fuels my exploration of web automation with Selenium and API automation with Pytest. Outside of my professional endeavors, I'm dedicated to continuous learning and growth, constantly aiming to expand my skill set in the dynamic field of automation testing. <br><br> In this space, you'll find a collection of projects I've tackled throughout my career, showcasing my abilities and experience 📚. <br><br> Let's connect! 🤝 I'm always interested in collaborating and learning from others.",
+            aboutTitle: "About me",
+            resumeBtn: "View Resume",
+            projectsTitle: "Projects",
+            project1Title: "Web App Automation - Urban Routes (POM)",
+            project1Description: "This project automates the reservation process of UrbanRoutes using Selenium WebDriver and Python. It covers various functionalities such as setting routes, selecting taxi fares, providing phone numbers and credit card details, sending messages to drivers, and requesting additional services such as blankets and ice creams.",
+            seeLive: "See Live",
+            sourceCode: "Source Code"
+        },
+        es: {
+            aboutMe1: "👋 Ingeniero de QA con formación en Ingeniería Aeronáutica. <br> Aunque la aeronáutica tiene un lugar especial en mi corazón ✈️, estoy emocionado de despegar en la industria de TI. 🚀",
+            aboutMe2: "Mi pasión por Python impulsa mi exploración de la automatización web con Selenium y la automatización de API con Pytest. Fuera de mis esfuerzos profesionales, estoy dedicado al aprendizaje continuo y al crecimiento, buscando constantemente expandir mi conjunto de habilidades en el dinámico campo de las pruebas de automatización. <br><br> En este espacio, encontrarás una colección de proyectos que he abordado a lo largo de mi carrera, mostrando mis habilidades y experiencia 📚. <br><br> ¡Conectemos! 🤝 Siempre estoy interesado en colaborar y aprender de los demás.",
+            aboutTitle: "Acerca de mí",
+            resumeBtn: "Ver Currículum",
+            projectsTitle: "Proyectos",
+            project1Title: "Automatización de Aplicación Web - Rutas Urbanas (POM)",
+            project1Description: "Este proyecto automatiza el proceso de reserva de UrbanRoutes utilizando Selenium WebDriver y Python. Cubre varias funcionalidades como establecer rutas, seleccionar tarifas de taxi, proporcionar números de teléfono y detalles de tarjetas de crédito, enviar mensajes a los conductores y solicitar servicios adicionales como mantas y helados.",
+            seeLive: "Ver en Vivo",
+            sourceCode: "Código Fuente"
+        }
+    };
+
+    function updateContent() {
+      const aboutMeText1 = document.getElementById('about-me-text-1');
+      const aboutMeText2 = document.getElementById('about-me-text-2');
+      const aboutTitle = document.querySelector('.section-title');
+      const resumeBtn = document.querySelector('.cta-btn--resume'); 
+      const projectsTitle = document.getElementById('projects-title');
+      const project1Title = document.getElementById('project-1-title');
+      const project1Description = document.getElementById('project-1-description');
+
+      // Selecciona los botones específicos del proyecto
+      const project1LiveBtn = document.querySelector('.project-wrapper__text .cta-btn--hero');
+      const project1CodeBtn = document.querySelector('.project-wrapper__text .cta-btn.text-color-main');
+
+      if (currentLang === 'en') {
+          aboutMeText1.innerHTML = content.en.aboutMe1;
+          aboutMeText2.innerHTML = content.en.aboutMe2;
+          aboutTitle.textContent = content.en.aboutTitle;
+          resumeBtn.textContent = content.en.resumeBtn;
+          projectsTitle.textContent = content.en.projectsTitle;
+          project1Title.textContent = content.en.project1Title;
+          project1Description.textContent = content.en.project1Description;
+          project1LiveBtn.textContent = content.en.seeLive;
+          project1CodeBtn.textContent = content.en.sourceCode;
+      } else {
+          aboutMeText1.innerHTML = content.es.aboutMe1;
+          aboutMeText2.innerHTML = content.es.aboutMe2;
+          aboutTitle.textContent = content.es.aboutTitle;
+          resumeBtn.textContent = content.es.resumeBtn;
+          projectsTitle.textContent = content.es.projectsTitle;
+          project1Title.textContent = content.es.project1Title;
+          project1Description.textContent = content.es.project1Description;
+          project1LiveBtn.textContent = content.es.seeLive;
+          project1CodeBtn.textContent = content.es.sourceCode;
+      }
+  }
+
+  function toggleLanguage() {
+      const isChecked = document.getElementById('language-toggle').checked;
+      currentLang = isChecked ? 'es' : 'en'; // Update current language flag
+
+      const heroTitle = document.getElementById('hero-title');
+      const knowMoreBtn = document.getElementById('know-more-btn');
+
+      // Update the hero title and "Know more" button text based on the current language
+      if (currentLang === 'en') {
+          heroTitle.innerHTML = `${staticTextEn}<span id="role"></span>`;
+          knowMoreBtn.textContent = 'Know more';
+      } else {
+          heroTitle.innerHTML = `${staticTextEs}<span id="role"></span>`;
+          knowMoreBtn.textContent = 'Saber más';
+      }
+
+      // Re-select the role element after updating the innerHTML
+      roleElement = document.getElementById("role");
+
+      // Update the content of "About Me" section
+      updateContent();
+
+      // Restart text animation with the new language
+      currentIndex = 0;
+      startTextAnimation();
+  }
+
+  document.getElementById('language-toggle').addEventListener('change', toggleLanguage);
+
+  // Start the initial text animation and update the content
+  document.addEventListener('DOMContentLoaded', () => {
+      startTextAnimation();
+      updateContent();
+  });
+
+  </script>
+
 
 
     <!-- **** Projects Section **** -->
     <section id="projects">
       <div class="container">
         <div class="project-wrapper">
-          <h2 class="section-title dark-blue-text">Projects</h2>
+          <h2 id="projects-title" class="section-title dark-blue-text">Projects</h2>
 
           <!-- Notice: each .row is a project -->
           <div class="row">
             <div class="col-lg-4 col-sm-12">
               <div class="project-wrapper__text load-hidden">
-                <h3 class="project-wrapper__text-title">Web App Automation - Urban Routes (POM)</h3>
+                <h3 id="project-1-title" class="project-wrapper__text-title">Web App Automation - Urban Routes (POM)</h3>
                 <div>
-                  <p class="mb-4">
+                  <p id="project-1-description" class="mb-4">
                     This project automates the reservation process of UrbanRoutes using Selenium WebDriver and Python. 
                     It covers various functionalities such as setting routes, selecting taxi fares, providing phone numbers and credit card details, 
                     sending messages to drivers, and requesting additional services such as blankets and ice creams.
@@ -290,7 +336,6 @@
                   <span class="keyword">Pytest</span>
                 </div>
                 <!-- End Keywords Section -->
-
 
                 <a
                   rel="noreferrer"
